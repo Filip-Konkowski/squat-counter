@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="head.html" >
+    <meta charset="UTF-8">
+    <title>Squat instructions</title>
+</head>
+<body>
+<header>
+    <nav>
+        <h1><a href="/">PoseNet Demos</a></h1>
+    </nav>
+</header>
+    <div class="container">
+        <div>
+            <h2 id="exercise-name">Squat Exercise</h2>
+        </div>
+        <div id="instructions">
+            <h2>Instructions: </h2>
+            <div>
+                <p>Exercise will start with calibration phase.</p>
+                <p>1. Make sure that camera see only you posture, there should be nobody else on camera range.</p>
+                <p>2. Make sure that you are standing facing forward and far enough so your feet are captured on camera.</p>
+                <p>3. The calibration will required to stand in <b>squat pose</b> like in below picture for 5sec.</p>
+                <p>4. The second stage of calibration will required to stand in <b>standing pose</b> like in below picture for 5sec</p>
+            </div>
+
+            <div class="centerize">
+                <video autoplay></video>
+            </div>
+            <div>
+                <ul id="exercise-list">
+                    <li>
+                        <h2>squat pose</h2>
+                        <picture>
+                            <source media="(max-width:319px)" srcset="./images/squat.jpg">
+                            <source media="(min-width:320px && max-width:799px)" srcset="./images/squat.jpg">
+                            <source media="(min-width:800px)" srcset="./images/squat.jpg">
+                            <img class="exercise-img" src="./images/squat.jpg" alt="Picture of squat exercise">
+                        </picture>
+                    </li>
+                    <li>
+                        <h2>standing pose</h2>
+                        <picture>
+                            <source media="(max-width:319px)" srcset="./images/standing.jpeg">
+                            <source media="(min-width:320px && max-width:799px)" srcset="./images/standing.jpeg">
+                            <source media="(min-width:800px)" srcset="./images/standing.jpeg">
+                            <img class="exercise-img" src="./images/standing.jpeg" alt="Picture of standing pose">
+                        </picture>
+                    </li>
+                </ul>
+            </div>
+            <div class="centerize">
+                <a class="btn-calibration" href="camera-squat.html">Start Calibration</a>
+            </div>
+        </div>
+    </div>
+    <script src="instruction-camera.js"></script>
+</body>
+<footer>
+<div>
+    <!--Designed by <a target="_blank" href="https://www.vecteezy.com">Vecteezy.com</a>-->
+</div>
+</footer>
+</html>

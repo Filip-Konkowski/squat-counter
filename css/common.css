@@ -1,0 +1,30 @@
+.btn-calibration {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 70%;}
+
+.btn-calibration:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.centerize {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}

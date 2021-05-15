@@ -1,0 +1,12 @@
+# package directories
+node_modules
+jspm_packages
+.idea/
+../node_modules/
+
+# Serverless directories
+.serverless
+
+dist/
+./../dist/
+.cache/

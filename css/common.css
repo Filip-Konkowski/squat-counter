@@ -11,7 +11,8 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    width: 70%;}
+    width: 70%;
+}
 
 .btn-calibration:hover {
     background-color: #4CAF50; /* Green */
@@ -27,4 +28,10 @@
 video {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+}
+
+#counter {
+    height:100px;
+    background-color:#13aa22;
+    font-size: 5000%;
 }

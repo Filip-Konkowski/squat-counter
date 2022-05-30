@@ -298,13 +298,13 @@ function detectPoseInRealTime(video, net) {
 
       if(calibrationContinue) {
           let lastPose = poses.slice(-1).pop();
-          saveCalibratedPoints('standing', lastPose.keypoints);
+          saveCalibratedPoints('squatPose', lastPose.keypoints);
           calibrationContinue = false;
           emptyInstructionImage()
           document.getElementById("countdowntimer").textContent = 'start exercise!'
       }
 
-      drawCalibrationPoints(ctx);
+      // drawCalibrationPoints(ctx);
 
     // End monitoring code for frames per second
     stats.end();
@@ -324,7 +324,7 @@ function calibrationStandingPose(executed)
             let timeleft = 5;
             let downloadTimer = setInterval(() => {
                 timeleft--;
-                document.getElementById("countdowntimer").textContent = "The pose calibration will end in " + timeleft + " seconds. Please hold still.";
+                document.getElementById("countdowntimer").textContent = "Please hold still. The pose calibration will end in " + timeleft + " seconds.";
                 if (timeleft <= 0) {
                     clearInterval(downloadTimer);
                     resolve()
@@ -332,15 +332,14 @@ function calibrationStandingPose(executed)
             }, 1000);
         }).then(() => {
             const keypoints = poses[0].keypoints;
-            saveCalibratedPoints('squatPose', keypoints);
-            addImageOfPose('./images/standing.jpeg');
+            saveCalibratedPoints('standing', keypoints);
+            addImageOfPose('./images/squat.jpg');
         }).then(() => {
             new Promise((resolve) => {
-
                 let timeleft = 5;
                 let downloadTimer = setInterval(() => {
                     timeleft--;
-                    document.getElementById("countdowntimer").textContent = "The second pose calibration will end in " + timeleft + " seconds. Please hold still.";
+                    document.getElementById("countdowntimer").textContent = "Please hold still. The second pose calibration will end in " + timeleft + " seconds. ";
                     if (timeleft <= 0) {
                         clearInterval(downloadTimer);
                         resolve()
@@ -404,12 +403,12 @@ function fullCycleCounter(isStanding) {
     fullCyclesCounted++;
     cycles.clear();
     document.getElementById("countdowntimer").textContent = "You made " + fullCyclesCounted + " repetitions";
+    document.getElementById("counter").textContent = fullCyclesCounted;
   }
 }
 
 function drawCalibrationPoints(ctx) {
     if (calibrationPoints.has('squatPose') && calibrationPoints.has('standing')) {
-
         let squatePoints = calibrationPoints.get('squatPose'),
             noseForSquate = squatePoints[0],
             yNoseForSquate = noseForSquate.position.y,
@@ -421,7 +420,6 @@ function drawCalibrationPoints(ctx) {
 
         drawPoint(ctx, yNoseForStanding, xNoseForStanding, 5, 'red');
         drawPoint(ctx, yNoseForSquate, xNoseForSquate, 5, 'yellow');
-
     }
 }
 
@@ -431,7 +429,7 @@ function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
         let keypoint = keypoints[0],
             calibrateKeypoint = calibratedKeypoints[0];
 
-        if(minimumPartConfidence < keypoint.score) {
+        if( keypoint.score > minimumPartConfidence) {
             return isKeypointCloseToCalubratedByYCoordinates(
                 keypoint.position.y,
                 calibrateKeypoint.position.y

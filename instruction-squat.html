@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="import" href="head.html" >
     <meta charset="UTF-8">
+    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+    <link rel="stylesheet" media="screen and (max-width:579px)" href="css/styles.css">
+    <link rel="stylesheet" media="screen and (min-width:580px) and (max-width:999px)" href="css/styles-medium.css">
+    <link rel="stylesheet" media="screen and (min-width:1000px)" href="css/styles-large.css">
+    <link rel="stylesheet" href="css/common.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Squat instructions</title>
 </head>
 <body>
@@ -14,6 +19,9 @@
     <div class="container">
         <div>
             <h2 id="exercise-name">Squat Exercise</h2>
+        </div>
+        <div></div>
+            <a class="btn-calibration" href="camera-squat.html">Start Calibration</a>
         </div>
         <div id="instructions">
             <h2>Instructions: </h2>
@@ -50,9 +58,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="centerize">
-                <a class="btn-calibration" href="camera-squat.html">Start Calibration</a>
-            </div>
+
         </div>
     </div>
     <script src="instruction-camera.js"></script>

@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <link rel="import" href="head.html">
+   
+    <link rel="stylesheet" media="screen and (max-width:579px)" href="css/styles.css">
+    <link rel="stylesheet" media="screen and (min-width:580px) and (max-width:999px)" href="css/styles-medium.css">
+    <link rel="stylesheet" media="screen and (min-width:1000px)" href="css/styles-large.css">
+    <link rel="stylesheet" href="css/common.css">
     <title>Smart Gym - Camera Feed</title>
-    <style>
+    <!-- <style>
     .footer {
         position: fixed;
         left: 0;
@@ -65,8 +69,8 @@
     }
 
 
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </style> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 </head>
 
 <body>
@@ -87,16 +91,17 @@
             <canvas id="output" />
         </div>
     </div>
+    <div id="counter"></div>
     <div>
-        <p id="countdowntimer">Please prepare yourself for calibration. First pose will be squat</p>
+        <p id="countdowntimer"></p>
     </div>
     <div class="centerize">
         <div id="calibration-pose">
             <picture>
-                <source media="(max-width:319px)" srcset="./images/squat.jpg">
-                <source media="(min-width:320px && max-width:799px)" srcset="./images/squat.jpg">
-                <source media="(min-width:800px)" srcset="./images/squat.jpg">
-                <img class="exercise-img" src="./images/squat.jpg" alt="Picture of squat exercise">
+                <source media="(max-width:319px)" srcset="./images/standing.jpeg">
+                <source media="(min-width:320px && max-width:799px)" srcset="./images/standing.jpeg">
+                <source media="(min-width:800px)" srcset="./images/standing.jpeg">
+                <img class="exercise-img" src="./images/standing.jpeg" alt="Picture of standing exercise">
             </picture>
         </div>
     </div>

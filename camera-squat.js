@@ -380,19 +380,22 @@ function emptyInstructionImage() {
 function saveCalibratedPoints(poseType, keypoints) {
     calibrationPoints.set(poseType, keypoints)
 }
-
+         
 function countCycles(keypoints) {
     if(calibrationPoints.size >= 2) {
         let squatPoseKeypoints = calibrationPoints.get('squatPose'),
             isSquatPose = isAnyKeypointCloseToCalibrated(keypoints, squatPoseKeypoints),
             standingPoseKeypoints = calibrationPoints.get('standing'),
             isStanding = isAnyKeypointCloseToCalibrated(keypoints, standingPoseKeypoints);
-
+        
+        moveSlider(keypoints, squatPoseKeypoints, standingPoseKeypoints)
         if (isStanding) {
             cycles.set('standingPose')
-            document.getElementById('level-bar')
+            // let handler = document.getElementsByClassName('slider-handle');
+            sliderTo(100)
         } else if(isSquatPose ) {
             cycles.set('squatPose')
+            sliderTo(0)
         }
 
         fullCycleCounter(isStanding)
@@ -441,12 +444,22 @@ function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
 }
 
 function isKeypointCloseToCalubratedByYCoordinates(y1, yCalibrated) {
-    let pixelsLower = yCalibrated * 1.10,
-    pixelsHigher = yCalibrated * 0.90;
+    let pixelsLower = yCalibrated * 1.05,
+    pixelsHigher = yCalibrated * 0.95;
 
     return y1 > pixelsHigher && y1 < pixelsLower;
 }
 
+function moveSlider(keypoints, yCalibrated, yMaxCalibrated) {
+  let currentPoint = keypoints[0].position.y,
+      calibrateKeypointForStand = yMaxCalibrated[0].position.y,
+      calibrateKeypointForSquate = yCalibrated[0].position.y,
+      range = calibrateKeypointForStand - calibrateKeypointForSquate;
+
+  let progress = Math.abs(currentPoint - calibrateKeypointForSquate);
+
+  sliderTo(progress)
+}
 /**
  * This maybe will be use in the future where we will need both x,y to check for counting exercise
  */

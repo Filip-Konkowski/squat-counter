@@ -45,16 +45,18 @@
         <div id="counter">0</div>
     </div>
     <center  class="box">
-        <div class="slider vertical vertical-50" data-slider data-initial-start="20" data-end="100" data-vertical="true">
+        <div class="slider vertical vertical-50" id="slider-level" data-slider data-initial-start="0" data-end="100" data-vertical="true">
         
-        <span class="slider-handle" 
-            data-slider-handle role="slider" 
-            tabindex="1">
-        </span>
+            <span class="slider-handle" 
+                data-slider-handle role="slider" 
+                tabindex="1">
+            </span>
 
-        <span class="slider-fill" 
-            data-slider-fill>
-        </span>
+            <span class="slider-fill" 
+                data-slider-fill>
+            </span>
+            <input type="hidden">
+        </div>
     </center>
     <div class="centerize">
         <div>
@@ -84,6 +86,9 @@
         $(document).ready(function () {
             $(document).foundation();
         });
+        function sliderTo(val) {
+            $("#slider-level input").val(val).trigger('change');
+        }
     </script>
 </body>
 </html>

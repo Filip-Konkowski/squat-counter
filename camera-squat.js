@@ -107,9 +107,9 @@ const guiState = {
     nmsRadius: 30.0,
   },
   output: {
-    showVideo: true,
-    showSkeleton: true,
-    showPoints: true,
+    showVideo: false,
+    showSkeleton: false,
+    showPoints: false,
     showBoundingBox: false,
   },
   net: null,
@@ -452,13 +452,9 @@ function isKeypointCloseToCalubratedByYCoordinates(y1, yCalibrated) {
 
 function moveSlider(keypoints, yCalibrated, yMaxCalibrated) {
   let currentPoint = keypoints[0].position.y,
-      calibrateKeypointForStand = yMaxCalibrated[0].position.y,
-      calibrateKeypointForSquate = yCalibrated[0].position.y,
-      range = calibrateKeypointForStand - calibrateKeypointForSquate;
+      calibrateKeypointForSquate = yCalibrated[0].position.y;
 
-  let progress = Math.abs(currentPoint - calibrateKeypointForSquate);
-
-  sliderTo(progress)
+  sliderTo(Math.abs(currentPoint - calibrateKeypointForSquate))
 }
 /**
  * This maybe will be use in the future where we will need both x,y to check for counting exercise

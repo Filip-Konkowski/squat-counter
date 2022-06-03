@@ -2,75 +2,25 @@
 <html>
 
 <head>
-   
+
     <link rel="stylesheet" media="screen and (max-width:579px)" href="css/styles.css">
     <link rel="stylesheet" media="screen and (min-width:580px) and (max-width:999px)" href="css/styles-medium.css">
     <link rel="stylesheet" media="screen and (min-width:1000px)" href="css/styles-large.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href=
+    "https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+            crossorigin="anonymous" />
+      
+        <!-- Compressed JavaScript -->
+        <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js">
+        </script>
+        <script src=
+    "https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js"
+            crossorigin="anonymous">
+        </script>
     <title>Smart Gym - Camera Feed</title>
-    <!-- <style>
-    .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        color: black;
-    }
-
-    .footer-text {
-        max-width: 600px;
-        text-align: center;
-        margin: auto;
-    }
-
-    @media only screen and (min-width: 600px) {
-      .footer-text, .dg {
-        display: none;
-      }
-
-        #countdowntimer {
-            font-size: 2em;
-        }
-
-
-        img {
-            height: 380px;
-        }
-    }
-
-    @media only screen and (max-width:579px) {
-        #calibration-pose {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 3%;
-        }
-
-        #countdowntimer {
-            font-size: 1em;
-        }
-
-
-        img {
-            height: 240px;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-
-        .footer {
-            display: none;
-        }
-    }
-
-    canvas#output {
-        padding: 0;
-        margin: auto;
-    }
-
-
-    </style> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  
 </head>
 
 <body>
@@ -91,11 +41,25 @@
             <canvas id="output" />
         </div>
     </div>
-    <div id="counter"></div>
-    <div>
-        <p id="countdowntimer"></p>
+    <div class="box">
+        <div id="counter">0</div>
     </div>
+    <center  class="box">
+        <div class="slider vertical vertical-50" data-slider data-initial-start="20" data-end="100" data-vertical="true">
+        
+        <span class="slider-handle" 
+            data-slider-handle role="slider" 
+            tabindex="1">
+        </span>
+
+        <span class="slider-fill" 
+            data-slider-fill>
+        </span>
+    </center>
     <div class="centerize">
+        <div>
+            <p id="countdowntimer"></p>
+        </div>
         <div id="calibration-pose">
             <picture>
                 <source media="(max-width:319px)" srcset="./images/standing.jpeg">
@@ -107,15 +71,19 @@
     </div>
     <div id="gui-container"></div>
     <!--<div class="footer">-->
-        <!--<div class="footer-text">-->
-            <!--<p>-->
-                <!--PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image.-->
-                <!--<br>-->
-                <!--<br> The <strong>output stride</strong> and <strong>image scale factor</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed.-->
-            <!--</p>-->
-        <!--</div>-->
+    <!--<div class="footer-text">-->
+    <!--<p>-->
+    <!--PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image.-->
+    <!--<br>-->
+    <!--<br> The <strong>output stride</strong> and <strong>image scale factor</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed.-->
+    <!--</p>-->
+    <!--</div>-->
     <!--</div>-->
     <script src="camera-squat.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).foundation();
+        });
+    </script>
 </body>
-
 </html>

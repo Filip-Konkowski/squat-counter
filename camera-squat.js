@@ -390,6 +390,7 @@ function countCycles(keypoints) {
 
         if (isStanding) {
             cycles.set('standingPose')
+            document.getElementById('level-bar')
         } else if(isSquatPose ) {
             cycles.set('squatPose')
         }
@@ -402,7 +403,6 @@ function fullCycleCounter(isStanding) {
   if(cycles.size === 2 && isStanding) {
     fullCyclesCounted++;
     cycles.clear();
-    document.getElementById("countdowntimer").textContent = "You made " + fullCyclesCounted + " repetitions";
     document.getElementById("counter").textContent = fullCyclesCounted;
   }
 }

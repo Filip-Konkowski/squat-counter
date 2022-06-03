@@ -31,7 +31,18 @@ video {
 }
 
 #counter {
-    height:100px;
+    width: 100%;
+    border: 5px solid red;
     background-color:#13aa22;
-    font-size: 5000%;
+    font-size: calc(20vw + 20vh + 15vmin);
+}
+
+.slider.vertical-50 {
+    width: 50vh;
+    transform: scale(1,-1);
+    height: 30vh !important;
+}
+
+.slider-handle {
+    width: 20vw !important;
 }

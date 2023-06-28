@@ -297,6 +297,9 @@ function detectPoseInRealTime(video, net) {
     });
 
       if(calibrationContinue) {
+          console.log('calibaration continue')
+          //todo make box green
+          document.getElementById("counter").style.backgroundColor = "green"
           let lastPose = poses.slice(-1).pop();
           saveCalibratedPoints('squatPose', lastPose.keypoints);
           calibrationContinue = false;
@@ -335,6 +338,7 @@ function calibrationStandingPose(executed)
             saveCalibratedPoints('standing', keypoints);
             addImageOfPose('./images/squat.jpg');
         }).then(() => {
+            document.getElementById("counter").style.backgroundColor = "yellow"
             new Promise((resolve) => {
                 let timeleft = 5;
                 let downloadTimer = setInterval(() => {
@@ -426,9 +430,7 @@ function drawCalibrationPoints(ctx) {
     }
 }
 
-//todo check if for loop will work in this setting
 function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
-    // for(let i = rightShoulderKeypointIndex; i >= 0 ; i-- ) {
         let keypoint = keypoints[0],
             calibrateKeypoint = calibratedKeypoints[0];
 
@@ -438,7 +440,6 @@ function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
                 calibrateKeypoint.position.y
             )
         }
-    // }
 
     return false
 }
@@ -456,13 +457,7 @@ function moveSlider(keypoints, yCalibrated, yMaxCalibrated) {
 
   sliderTo(Math.abs(currentPoint - calibrateKeypointForSquate))
 }
-/**
- * This maybe will be use in the future where we will need both x,y to check for counting exercise
- */
-// function isKeypointCloseToCalibratedCircle(x1, xCalibrated, y1, yCalibrated) {
-//     let r = (yCalibrated * 0.2);
-//     return Math.sqrt((x1-xCalibrated)*(x1-xCalibrated) + (y1-yCalibrated)*(y1-yCalibrated)) < r;
-// }
+
 /**
  * Kicks off the demo by loading the posenet model, finding and loading
  * available camera devices, and setting off the detectPoseInRealTime function.

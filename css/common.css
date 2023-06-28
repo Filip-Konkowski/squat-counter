@@ -35,8 +35,8 @@ video {
 
 #counter {
     width: 100%;
-    border: 5px solid red;
-    background-color: #13aa22;
+    border: 5px solid black;
+    background-color: red;
     font-size: calc(20vw + 20vh + 15vmin);
 }
 
@@ -56,8 +56,6 @@ video {
 }
 
 video {
-    position: absolute;
-    /* top: 0;*/
     left: 0; 
     z-index: 1;
     max-height: 100%;

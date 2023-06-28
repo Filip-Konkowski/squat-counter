@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
     <link rel="stylesheet" media="screen and (max-width:579px)" href="css/styles.css">
     <link rel="stylesheet" media="screen and (min-width:580px) and (max-width:999px)" href="css/styles-medium.css">
     <link rel="stylesheet" media="screen and (min-width:1000px)" href="css/styles-large.css">
@@ -29,6 +28,10 @@
     <div id="loading">
         Loading the model...
     </div>
+
+    <div class="centerize cover-video"><div class="vsc-controller vsc-nosource"></div>
+        <video autoplay=""></video>
+    </div>
     <div class="centerize">
         <div id='main' style='display:none'>
             <video id="video" playsinline style=" -moz-transform: scaleX(-1);
@@ -36,6 +39,8 @@
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
             display: none;
+            max-width: 100%;  /* Ensures video does not overflow */
+            height: auto;  /* Maintains aspect ratio */
             ">
             </video>
             <canvas id="output" />

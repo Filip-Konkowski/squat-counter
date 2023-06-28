@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" media="screen and (max-width:579px)" href="css/styles.css">
+    <link rel="stylesheet" media="screen and (min-width:580px) and (max-width:999px)" href="css/styles-medium.css">
+    <link rel="stylesheet" media="screen and (min-width:1000px)" href="css/styles-large.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href=
+    "https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+            crossorigin="anonymous" />
+      
+        <!-- Compressed JavaScript -->
+        <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js">
+        </script>
+        <script src=
+    "https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js"
+            crossorigin="anonymous">
+        </script>
+    <title>Smart Gym - Camera Feed</title>
+  
+</head>
+
+<body>
+    <div id="info" style='display:none'>
+    </div>
+    <div id="loading">
+        Loading the model...
+    </div>
+    <div class="centerize">
+        <div id='main' style='display:none'>
+            <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            display: none;
+            ">
+            </video>
+            <canvas id="output" />
+        </div>
+    </div>
+    <div class="box">
+        <div id="counter">0</div>
+    </div>
+    <center  class="box">
+        <div class="slider vertical vertical-50" id="slider-level" data-slider data-initial-start="0" data-end="100" data-vertical="true">
+        
+            <span class="slider-handle" 
+                data-slider-handle role="slider" 
+                tabindex="1">
+            </span>
+
+            <span class="slider-fill" 
+                data-slider-fill>
+            </span>
+            <input type="hidden">
+        </div>
+    </center>
+    <div class="centerize">
+        <div>
+            <p id="countdowntimer"></p>
+        </div>
+        <div id="calibration-pose">
+            <picture>
+                <source media="(max-width:319px)" srcset="./images/standing.jpeg">
+                <source media="(min-width:320px && max-width:799px)" srcset="./images/standing.jpeg">
+                <source media="(min-width:800px)" srcset="./images/standing.jpeg">
+                <img class="exercise-img" src="./images/standing.jpeg" alt="Picture of standing exercise">
+            </picture>
+        </div>
+    </div>
+    <div id="gui-container"></div>
+    <!--<div class="footer">-->
+    <!--<div class="footer-text">-->
+    <!--<p>-->
+    <!--PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image.-->
+    <!--<br>-->
+    <!--<br> The <strong>output stride</strong> and <strong>image scale factor</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed.-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <script src="camera-squat.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).foundation();
+        });
+        function sliderTo(val) {
+            $("#slider-level input").val(val).trigger('change');
+        }
+    </script>
+</body>
+</html>

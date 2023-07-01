@@ -111,9 +111,9 @@ const guiState = {
     nmsRadius: 30.0,
   },
   output: {
-    showVideo: true,
-    showSkeleton: true,
-    showPoints: true,
+    showVideo: false,
+    showSkeleton: false,
+    showPoints: false,
     showBoundingBox: false,
   },
   net: null,
@@ -442,15 +442,15 @@ function drawCalibrationPoints(ctx) {
 
 function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
     // eslint-disable-next-line one-var
-        let keypoint = keypoints[0],
-            calibrateKeypoint = calibratedKeypoints[0];
+    let keypoint = keypoints[5],
+        calibrateKeypoint = calibratedKeypoints[5];
 
-        if ( keypoint.score > minimumPartConfidence) {
-            return isKeypointCloseToCalubratedByYCoordinates(
-                keypoint.position.y,
-                calibrateKeypoint.position.y
-            );
-        }
+    if ( keypoint.score > minimumPartConfidence) {
+        return isKeypointCloseToCalubratedByYCoordinates(
+            keypoint.position.y,
+            calibrateKeypoint.position.y
+        );
+    }
 
     return false;
 }
@@ -465,8 +465,8 @@ function isKeypointCloseToCalubratedByYCoordinates(y1, yCalibrated) {
 
 function moveSlider(keypoints, yCalibrated, yMaxCalibrated) {
     // eslint-disable-next-line one-var
-  let currentPoint = keypoints[0].position.y,
-      calibrateKeypointForSquate = yCalibrated[0].position.y;
+  let currentPoint = keypoints[5].position.y,
+      calibrateKeypointForSquate = yCalibrated[5].position.y;
 
   sliderTo(Math.abs(currentPoint - calibrateKeypointForSquate));
 }

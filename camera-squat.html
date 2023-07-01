@@ -29,23 +29,7 @@
         Loading the model...
     </div>
 
-    <div class="centerize cover-video"><div class="vsc-controller vsc-nosource"></div>
-        <video autoplay=""></video>
-    </div>
-    <div class="centerize">
-        <div id='main' style='display:none'>
-            <video id="video" playsinline style=" -moz-transform: scaleX(-1);
-            -o-transform: scaleX(-1);
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-            display: none;
-            max-width: 100%;  /* Ensures video does not overflow */
-            height: auto;  /* Maintains aspect ratio */
-            ">
-            </video>
-            <canvas id="output" />
-        </div>
-    </div>
+
     <div class="box">
         <div id="counter">0</div>
     </div>
@@ -74,6 +58,23 @@
                 <source media="(min-width:800px)" srcset="./images/standing.jpeg">
                 <img class="exercise-img" src="./images/standing.jpeg" alt="Picture of standing exercise">
             </picture>
+        </div>
+    </div>
+    <div class="centerize cover-video"><div class="vsc-controller vsc-nosource"></div>
+        <video autoplay=""></video>
+    </div>
+    <div class="centerize">
+        <div id='main' style='display:none'>
+            <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            display: none;
+            max-width: 100%;  /* Ensures video does not overflow */
+            height: auto;  /* Maintains aspect ratio */
+            ">
+            </video>
+            <canvas id="output" />
         </div>
     </div>
     <div id="gui-container"></div>

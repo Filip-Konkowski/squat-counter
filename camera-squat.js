@@ -17,14 +17,18 @@
 import * as posenet from '@tensorflow-models/posenet';
 import dat from 'dat.gui';
 import Stats from 'stats.js';
+// eslint-disable-next-line max-len
 import {drawKeypoints, drawSkeleton, drawBoundingBox, drawPoint} from './demo_util';
 
+// eslint-disable-next-line one-var
 const videoWidth = isMobile() ? 600*0.5 : 720,
       videoHeight = isMobile() ? 500*0.5 : 600,
       stats = new Stats(),
       minimumPartConfidence = 0.3,
+    // eslint-disable-next-line no-unused-vars
       rightShoulderKeypointIndex = 6;
 
+// eslint-disable-next-line one-var
 let calibrationExecutedForStandingPose = false,
     calibrationContinue = false,
     calibrationPoints = new Map(),
@@ -34,9 +38,9 @@ let calibrationExecutedForStandingPose = false,
 
 let poses = [];
 
-const widthWindow = window.innerWidth
-    || document.documentElement.clientWidth
-    || document.body.clientWidth;
+// const widthWindow = window.innerWidth
+//     || document.documentElement.clientWidth
+//     || document.body.clientWidth;
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
@@ -127,7 +131,7 @@ function setupGui(cameras, net) {
 
   const gui = new dat.GUI({width: 300, autoPlace: false});
 
-    var customContainer = document.getElementById('gui-container');
+    const customContainer = document.getElementById('gui-container');
     customContainer.appendChild(gui.domElement);
 
   // The single-pose algorithm is faster and simpler but requires only one
@@ -290,21 +294,23 @@ function detectPoseInRealTime(video, net) {
           drawBoundingBox(keypoints, ctx);
         }
 
-          calibrationStandingPose(calibrationExecutedForStandingPose, keypoints).catch(error => null);
+        // eslint-disable-next-line max-len
+        calibrationStandingPose(calibrationExecutedForStandingPose, keypoints).catch((error) => null);
 
-          countCycles(keypoints)
+        countCycles(keypoints);
       }
     });
 
-      if(calibrationContinue) {
-          console.log('calibaration continue')
-          //todo make box green
-          document.getElementById("counter").style.backgroundColor = "green"
+      if (calibrationContinue) {
+          console.log('calibaration continue');
+
+          document.getElementById('counter').style.backgroundColor = 'green';
           let lastPose = poses.slice(-1).pop();
           saveCalibratedPoints('squatPose', lastPose.keypoints);
           calibrationContinue = false;
-          emptyInstructionImage()
-          document.getElementById("countdowntimer").textContent = 'start exercise!'
+          emptyInstructionImage();
+          // eslint-disable-next-line max-len
+          document.getElementById('countdowntimer').textContent = 'start exercise!';
       }
 
       // drawCalibrationPoints(ctx);
@@ -318,19 +324,19 @@ function detectPoseInRealTime(video, net) {
   poseDetectionFrame();
 }
 
-function calibrationStandingPose(executed)
-{
-    if(!executed) {
+function calibrationStandingPose(executed) {
+    if (!executed) {
         calibrationExecutedForStandingPose = true;
 
         return new Promise((resolve) => {
             let timeleft = 5;
             let downloadTimer = setInterval(() => {
                 timeleft--;
-                document.getElementById("countdowntimer").textContent = "Please hold still. The pose calibration will end in " + timeleft + " seconds.";
+                // eslint-disable-next-line max-len
+                document.getElementById('countdowntimer').textContent = 'Please hold still. The pose calibration will end in ' + timeleft + ' seconds.';
                 if (timeleft <= 0) {
                     clearInterval(downloadTimer);
-                    resolve()
+                    resolve();
                 }
             }, 1000);
         }).then(() => {
@@ -338,26 +344,25 @@ function calibrationStandingPose(executed)
             saveCalibratedPoints('standing', keypoints);
             addImageOfPose('./images/squat.jpg');
         }).then(() => {
-            document.getElementById("counter").style.backgroundColor = "yellow"
+            document.getElementById('counter').style.backgroundColor = 'yellow';
             new Promise((resolve) => {
                 let timeleft = 5;
                 let downloadTimer = setInterval(() => {
                     timeleft--;
-                    document.getElementById("countdowntimer").textContent = "Please hold still. The second pose calibration will end in " + timeleft + " seconds. ";
+                    // eslint-disable-next-line max-len
+                    document.getElementById('countdowntimer').textContent = 'Please hold still. The second pose calibration will end in ' + timeleft + ' seconds. ';
                     if (timeleft <= 0) {
                         clearInterval(downloadTimer);
-                        resolve()
+                        resolve();
                     }
                 }, 1000);
-
             }).then(() => {
                 calibrationContinue = true;
             });
-
-        })
+        });
     } else {
       return new Promise((resolve, reject) => {
-          reject('calibration standing pose rejected')
+          reject('calibration standing pose rejected');
       });
     }
 }
@@ -369,53 +374,58 @@ function addImageOfPose(src) {
   imageElem.setAttribute('width', 512);
 
   emptyInstructionImage().appendChild(imageElem);
-
 }
 
 function emptyInstructionImage() {
     let divElem = document.getElementById('calibration-pose');
-    while(divElem.firstChild) {
-        divElem.removeChild(divElem.firstChild)
+    while (divElem.firstChild) {
+        divElem.removeChild(divElem.firstChild);
     }
 
-    return divElem
+    return divElem;
 }
 
 function saveCalibratedPoints(poseType, keypoints) {
-    calibrationPoints.set(poseType, keypoints)
+    calibrationPoints.set(poseType, keypoints);
 }
-         
+
 function countCycles(keypoints) {
-    if(calibrationPoints.size >= 2) {
+    if (calibrationPoints.size >= 2) {
+        // eslint-disable-next-line one-var
         let squatPoseKeypoints = calibrationPoints.get('squatPose'),
+            // eslint-disable-next-line max-len
             isSquatPose = isAnyKeypointCloseToCalibrated(keypoints, squatPoseKeypoints),
             standingPoseKeypoints = calibrationPoints.get('standing'),
+            // eslint-disable-next-line max-len
             isStanding = isAnyKeypointCloseToCalibrated(keypoints, standingPoseKeypoints);
-        
-        moveSlider(keypoints, squatPoseKeypoints, standingPoseKeypoints)
+
+        moveSlider(keypoints, squatPoseKeypoints, standingPoseKeypoints);
         if (isStanding) {
-            cycles.set('standingPose')
+            cycles.set('standingPose');
             // let handler = document.getElementsByClassName('slider-handle');
-            sliderTo(100)
-        } else if(isSquatPose ) {
-            cycles.set('squatPose')
-            sliderTo(0)
+            sliderTo(100);
+        } else if (isSquatPose ) {
+            cycles.set('squatPose');
+            sliderTo(0);
         }
 
-        fullCycleCounter(isStanding)
+        fullCycleCounter(isStanding);
     }
 }
 
 function fullCycleCounter(isStanding) {
-  if(cycles.size === 2 && isStanding) {
+  if (cycles.size === 2 && isStanding) {
     fullCyclesCounted++;
     cycles.clear();
-    document.getElementById("counter").textContent = fullCyclesCounted;
+    document.getElementById('counter').textContent = fullCyclesCounted;
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function drawCalibrationPoints(ctx) {
+    // eslint-disable-next-line max-len
     if (calibrationPoints.has('squatPose') && calibrationPoints.has('standing')) {
+        // eslint-disable-next-line one-var
         let squatePoints = calibrationPoints.get('squatPose'),
             noseForSquate = squatePoints[0],
             yNoseForSquate = noseForSquate.position.y,
@@ -431,20 +441,22 @@ function drawCalibrationPoints(ctx) {
 }
 
 function isAnyKeypointCloseToCalibrated(keypoints, calibratedKeypoints) {
+    // eslint-disable-next-line one-var
         let keypoint = keypoints[0],
             calibrateKeypoint = calibratedKeypoints[0];
 
-        if( keypoint.score > minimumPartConfidence) {
+        if ( keypoint.score > minimumPartConfidence) {
             return isKeypointCloseToCalubratedByYCoordinates(
                 keypoint.position.y,
                 calibrateKeypoint.position.y
-            )
+            );
         }
 
-    return false
+    return false;
 }
 
 function isKeypointCloseToCalubratedByYCoordinates(y1, yCalibrated) {
+    // eslint-disable-next-line one-var
     let pixelsLower = yCalibrated * 1.05,
     pixelsHigher = yCalibrated * 0.95;
 
@@ -452,10 +464,11 @@ function isKeypointCloseToCalubratedByYCoordinates(y1, yCalibrated) {
 }
 
 function moveSlider(keypoints, yCalibrated, yMaxCalibrated) {
+    // eslint-disable-next-line one-var
   let currentPoint = keypoints[0].position.y,
       calibrateKeypointForSquate = yCalibrated[0].position.y;
 
-  sliderTo(Math.abs(currentPoint - calibrateKeypointForSquate))
+  sliderTo(Math.abs(currentPoint - calibrateKeypointForSquate));
 }
 
 /**

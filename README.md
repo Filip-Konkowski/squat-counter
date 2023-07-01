@@ -40,10 +40,3 @@ Link the local posenet to the demos:
 yalc link \@tensorflow-models/posenet
 ```
 
-To get future updates from the posenet source code:
-```
-# cd up into the posenet directory
-cd ../
-yarn build && yalc push
-```
->>>>>>> s1

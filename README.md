@@ -1,3 +1,5 @@
+You can try the demo
+https://filip-smart-gym.s3.eu-west-2.amazonaws.com/dist/index.html
 
 ## Setup
 
